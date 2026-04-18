@@ -1,4 +1,4 @@
-package com.hcl.hackaton.config;
+package com.hcl.payments.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

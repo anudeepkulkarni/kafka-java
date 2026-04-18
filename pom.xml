@@ -9,11 +9,11 @@
 		<version>3.4.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jocata</groupId>
-	<artifactId>customer-service</artifactId>
+	<groupId>com.hcl</groupId>
+	<artifactId>payments-service</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
-	<name>customer-service</name>
+	<name>payments-service</name>
 	<description>This API exposes endpoints to access and manage customer KYC
 		management</description>
 
@@ -116,10 +116,6 @@
             <version>0.8.7</version>
         </dependency>
         
-        <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-</dependency>
 
 
 		<dependency>

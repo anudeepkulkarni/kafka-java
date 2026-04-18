@@ -1,12 +1,12 @@
-package com.hcl.hackaton;
+package com.hcl.payments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CustomerApplication {
+public class PaymentIngestor {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CustomerApplication.class, args);
+		SpringApplication.run(PaymentIngestor.class, args);
 	}
 }

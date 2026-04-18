@@ -1,4 +1,4 @@
-package com.hcl.hackaton.exception;
+package com.hcl.payments.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
