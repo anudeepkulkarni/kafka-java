@@ -23,7 +23,6 @@ public class KafkaConsumerConfig {
         JsonDeserializer<PaymentEvent> valueDeserializer =
                 new JsonDeserializer<>(PaymentEvent.class);
 
-        // ✅ REQUIRED: allow your model package
         valueDeserializer.addTrustedPackages(
                 "com.llyods.payments.model",
                 "java.util",
