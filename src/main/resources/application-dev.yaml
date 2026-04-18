@@ -1,43 +1,24 @@
+server:
+  port: 8080
+
 spring:
   datasource:
-    username: postgres
-    password: admin
-    url: jdbc:postgresql://localhost:5432/postgres
-    driverClassName: org.postgresql.Driver
-    hikari:
-      idle-timeout: 30000
-      max-lifetime: 1800000
-      pool-name: mdmdatahub-pool
-    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:ingestor-db
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
 
   jpa:
-    properties:
-      hibernate:
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    show-sql: true
 
-  data:
-    mongodb:
-      uri: mongodb+srv://anudeepkulkarni_db_user:G7s4qtllvHWCE6z0@cluster0.yrv1uz3.mongodb.net/?appName=Cluster0
-      database: hcl  
-
-kafka:
-  bootstrap-servers: localhost:9092
-
-  consumer:
-    group-id: test-group
-    auto-offset-reset: earliest
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
-  producer:
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
-server:
-  port: 8083
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all # ensures all ISR replicas acknowledge → strongest durability
+      linger-ms: 5 # small batching delay balances latency vs throughput
+      compression-type: snappy # reduces network I/O with minimal CPU cost
+      enable-idempotence: true # avoids duplicate events on producer retries
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
