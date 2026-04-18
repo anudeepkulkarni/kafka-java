@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     url: jdbc:h2:mem:ingestor-db
-    driverClassName: org.h2.Driver
+    driver-class-name: org.h2.Driver
     username: sa
     password: ""
 
@@ -13,12 +13,23 @@ spring:
       ddl-auto: create
     show-sql: true
 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   kafka:
     bootstrap-servers: localhost:9092
     producer:
-      acks: all # ensures all ISR replicas acknowledge → strongest durability
-      linger-ms: 5 # small batching delay balances latency vs throughput
-      compression-type: snappy # reduces network I/O with minimal CPU cost
-      enable-idempotence: true # avoids duplicate events on producer retries
+      acks: all                     # ensures all in-sync replicas acknowledge → strongest durability
+      linger-ms: 5                  # batches records briefly to improve throughput without high latency
+      compression-type: snappy      # reduces network I/O with low CPU overhead
+      enable-idempotence: true      # prevents duplicate messages on retries
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics

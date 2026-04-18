@@ -1,4 +1,4 @@
-package com.hcl.payments.model;
+package com.llyods.payments.model;
 
 import java.math.BigDecimal;
 import java.time.Instant;

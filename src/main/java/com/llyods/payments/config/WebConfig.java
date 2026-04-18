@@ -1,4 +1,4 @@
-package com.hcl.payments.config;
+package com.llyods.payments.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
